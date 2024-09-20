@@ -1,121 +1,132 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
 import background from '../videos/background.mp4';
+import gsap from 'gsap';
 
 const Home = () => {
-  useEffect(() => {
-    gsap.fromTo(".features", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 });
-    gsap.fromTo(".how-it-works", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.5 });
-    gsap.fromTo(".testimonials", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 1 });
+  React.useEffect(() => {
+    gsap.fromTo(".fade-in", { opacity: 0 }, { opacity: 1, duration: 1.5 });
   }, []);
 
   return (
     <div>
-      {/* Section 1 Code (Unchanged) */}
+      {/* Section 1: Hero */}
       <div className="relative h-screen">
-        <video 
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-50" 
-          src={background} 
-          autoPlay 
-          loop 
-          muted 
-        />
+        <video className="absolute top-0 left-0 w-full h-full object-cover opacity-50" src={background} autoPlay loop muted />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 md:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="mb-4"
-          >
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="mb-4">
             <h1 className="text-5xl md:text-7xl font-bold mb-4">The AI-Driven Disaster Management System</h1>
           </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="w-[80%] mt-3"
-          >
-            <p className="text-lg md:text-2xl mb-6">
-              Harness the power of AI to predict, manage, and mitigate disasters. Our system provides real-time insights and solutions for effective disaster response.
-            </p>
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }} className="w-[80%] mt-3">
+            <p className="text-lg md:text-2xl mb-6">Harness the power of AI to predict, manage, and mitigate disasters. Our system provides real-time insights and solutions for effective disaster response.</p>
           </motion.div>
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black opacity-60"></div>
       </div>
 
       {/* Section 2: Features Overview */}
-      <section className="relative h-screen w-full bg-gradient-to-b from-gray-100 to-gray-200 py-16 features">
+      <div className="bg-gray-100 py-16">
         <div className="container mx-auto px-4 md:px-8">
-          <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">Features Overview</h2>
-          <p className="text-lg text-gray-700 mb-8 text-center">Discover the key features of our AI-Driven Disaster Management System.</p>
-          <div className="flex flex-wrap justify-center gap-8">
-            <FeatureCard title="Real-Time Monitoring" description="Stay updated with real-time monitoring of disaster-prone areas using advanced AI algorithms." />
-            <FeatureCard title="Predictive Analytics" description="Predict potential disasters and mitigate risks with our cutting-edge predictive analytics." />
-            <FeatureCard title="Automated Response" description="Implement automated response strategies to efficiently manage disaster situations." />
-            <FeatureCard title="Comprehensive Reports" description="Generate detailed reports and insights for better decision-making and planning." />
-          </div>
+          <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Features Overview</h2>
+            <p className="text-lg text-gray-700 mb-8">Discover the key features of our AI-Driven Disaster Management System.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="p-6 bg-white shadow-lg rounded-lg">
+                <img src="feature1.png" alt="Real-Time Monitoring" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Real-Time Monitoring</h3>
+                <p className="text-gray-700">Stay updated with real-time monitoring of disaster-prone areas using advanced AI algorithms.</p>
+              </div>
+              <div className="p-6 bg-white shadow-lg rounded-lg">
+                <img src="feature2.png" alt="Predictive Analytics" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Predictive Analytics</h3>
+                <p className="text-gray-700">Predict potential disasters and mitigate risks with our cutting-edge predictive analytics.</p>
+              </div>
+              <div className="p-6 bg-white shadow-lg rounded-lg">
+                <img src="feature3.png" alt="Automated Response" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Automated Response</h3>
+                <p className="text-gray-700">Implement automated response strategies to efficiently manage disaster situations.</p>
+              </div>
+              <div className="p-6 bg-white shadow-lg rounded-lg">
+                <img src="feature4.png" alt="Comprehensive Reports" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Comprehensive Reports</h3>
+                <p className="text-gray-700">Generate detailed reports and insights for better decision-making and planning.</p>
+              </div>
+            </div>
+          </motion.section>
         </div>
-      </section>
+      </div>
 
       {/* Section 3: How It Works */}
-      <section className="relative h-screen w-full bg-gradient-to-b from-gray-200 to-gray-300 py-16 how-it-works">
+      <div className="bg-gradient-to-r from-blue-500 to-teal-500 text-white py-16">
         <div className="container mx-auto px-4 md:px-8">
-          <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">How It Works</h2>
-          <p className="text-lg text-gray-700 mb-8 text-center">Understand the process behind our AI-Driven Disaster Management System.</p>
-          <div className="flex flex-wrap justify-center gap-8">
-            <ProcessCard step="1" title="Data Collection" description="Gather data from various sources, including weather stations, satellites, and sensors." />
-            <ProcessCard step="2" title="AI Analysis" description="Analyze collected data using AI algorithms to identify patterns and predict disasters." />
-            <ProcessCard step="3" title="Real-Time Alerts" description="Send real-time alerts to relevant authorities and stakeholders for immediate action." />
-            <ProcessCard step="4" title="Automated Response" description="Execute pre-defined response plans to mitigate the impact of the disaster." />
-          </div>
+          <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">How It Works</h2>
+            <p className="text-lg mb-8">Understand the process behind our AI-Driven Disaster Management System.</p>
+            <div className="flex flex-wrap justify-center gap-8">
+              <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
+                <img src="process1.png" alt="Data Collection" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Step 1: Data Collection</h3>
+                <p>Gather data from various sources, including weather stations, satellites, and sensors.</p>
+              </div>
+              <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
+                <img src="process2.png" alt="AI Analysis" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Step 2: AI Analysis</h3>
+                <p>Analyze collected data using AI algorithms to identify patterns and predict disasters.</p>
+              </div>
+              <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
+                <img src="process3.png" alt="Real-Time Alerts" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Step 3: Real-Time Alerts</h3>
+                <p>Send real-time alerts to relevant authorities and stakeholders for immediate action.</p>
+              </div>
+              <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
+                <img src="process4.png" alt="Automated Response" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Step 4: Automated Response</h3>
+                <p>Execute pre-defined response plans to mitigate the impact of the disaster.</p>
+              </div>
+            </div>
+          </motion.section>
         </div>
-      </section>
+      </div>
 
-      {/* Section 4: What Our Users Say */}
-      <section className="relative h-screen w-full bg-gradient-to-b from-gray-300 to-gray-400 py-16 testimonials">
+      {/* Section 4: Testimonials */}
+      <div className="bg-gray-100 py-16">
         <div className="container mx-auto px-4 md:px-8">
-          <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">What Our Users Say</h2>
-          <p className="text-lg text-gray-700 mb-8 text-center">Hear from users who have benefited from our system.</p>
-          <div className="flex flex-wrap justify-center gap-8">
-            <TestimonialCard name="Jane Doe" feedback="The AI-Driven Disaster Management System has revolutionized our emergency response strategies. Highly recommended!" />
-            <TestimonialCard name="John Smith" feedback="Thanks to the predictive analytics, we were able to prepare in advance and minimize damage during recent floods." />
-            <TestimonialCard name="Emily Davis" feedback="Real-time alerts have made a significant difference in our disaster management operations. A game-changer!" />
-          </div>
+          <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">What Our Users Say</h2>
+            <p className="text-lg text-gray-700 mb-8">Hear from users who have benefited from our system.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="p-6 bg-white shadow-lg rounded-lg">
+                <img src="user1.jpg" alt="Jane Doe" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
+                <h3 className="text-xl font-bold mb-2 text-gray-800 text-center">Jane Doe</h3>
+                <p className="text-gray-700 text-center">"The AI-Driven Disaster Management System has revolutionized our emergency response strategies. Highly recommended!"</p>
+              </div>
+              <div className="p-6 bg-white shadow-lg rounded-lg">
+                <img src="user2.jpg" alt="John Smith" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
+                <h3 className="text-xl font-bold mb-2 text-gray-800 text-center">John Smith</h3>
+                <p className="text-gray-700 text-center">"Thanks to the predictive analytics, we were able to prepare in advance and minimize damage during recent floods."</p>
+              </div>
+              <div className="p-6 bg-white shadow-lg rounded-lg">
+                <img src="user3.jpg" alt="Emily Davis" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
+                <h3 className="text-xl font-bold mb-2 text-gray-800 text-center">Emily Davis</h3>
+                <p className="text-gray-700 text-center">"Real-time alerts have made a significant difference in our disaster management operations. A game-changer!"</p>
+              </div>
+            </div>
+          </motion.section>
         </div>
-      </section>
+      </div>
+
+      {/* Section 5: Call to Action */}
+      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-16">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center">
+            <h2 className="text-4xl font-bold mb-4">Get Started Today</h2>
+            <p className="text-lg mb-8">Sign up now and harness the power of AI for effective disaster management.</p>
+            <button className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition duration-300">Create an Account</button>
+          </motion.section>
+        </div>
+      </div>
     </div>
   );
 };
-
-const FeatureCard = ({ title, description }) => (
-  <motion.div 
-    whileHover={{ scale: 1.05 }} 
-    className="bg-white p-6 rounded-lg shadow-lg w-80 hover:bg-gray-50 transition-colors duration-300"
-  >
-    <h3 className="text-2xl font-bold mb-2 text-gray-800">{title}</h3>
-    <p className="text-gray-700">{description}</p>
-  </motion.div>
-);
-
-const ProcessCard = ({ step, title, description }) => (
-  <motion.div 
-    whileHover={{ scale: 1.05 }} 
-    className="bg-white p-6 rounded-lg shadow-lg w-80 hover:bg-gray-50 transition-colors duration-300"
-  >
-    <h3 className="text-2xl font-bold mb-2 text-gray-800">Step {step}: {title}</h3>
-    <p className="text-gray-700">{description}</p>
-  </motion.div>
-);
-
-const TestimonialCard = ({ name, feedback }) => (
-  <motion.div 
-    whileHover={{ scale: 1.05 }} 
-    className="bg-white p-6 rounded-lg shadow-lg w-80 hover:bg-gray-50 transition-colors duration-300"
-  >
-    <p className="text-gray-700 mb-4">"{feedback}"</p>
-    <h4 className="text-lg font-bold text-gray-800">- {name}</h4>
-  </motion.div>
-);
 
 export default Home;
