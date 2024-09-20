@@ -16,15 +16,10 @@ const Navbar = () => {
           <NavLink to="/solutions" className="hover:text-gray-400">Solutions</NavLink>
           <NavLink to="/ai-models" className="hover:text-gray-400">AI Models</NavLink>
           <NavLink to="/resources" className="hover:text-gray-400">Resources</NavLink>
-          <NavLink to="/support" className="hover:text-gray-400">Support</NavLink>
           <NavLink to="/contact" className="hover:text-gray-400">Contact</NavLink>
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
-          <NavLink to="/login" className="hover:text-gray-400 font-semibold">Login</NavLink>
-          <NavLink to="/signup" className="bg-white text-black px-4 py-2 rounded hover:bg-gray-300">Sign Up</NavLink>
-        </div>
-
+       
         <div className="md:hidden">
           <FiMenu className="text-2xl" />
         </div>

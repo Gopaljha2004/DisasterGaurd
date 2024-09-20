@@ -2,6 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import background from '../videos/background.mp4';
 import gsap from 'gsap';
+import datacollectionimage from "../Images/section3/datacollection.jpg"
+import aianalisisimage from "../Images/section3/aianalysis.jpg"
+import automatedimage from "../Images/section3/automated.png"
+import realtimealerts from "../Images/section3/realtimealerts.jpg"
 
 const Home = () => {
   React.useEffect(() => {
@@ -25,7 +29,7 @@ const Home = () => {
       </div>
 
       {/* Section 2: Features Overview */}
-      <div className="bg-gray-100 py-16">
+      {/* <div className="bg-gray-100 py-16">
         <div className="container mx-auto px-4 md:px-8">
           <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Features Overview</h2>
@@ -54,32 +58,32 @@ const Home = () => {
             </div>
           </motion.section>
         </div>
-      </div>
+      </div> */}
 
       {/* Section 3: How It Works */}
-      <div className="bg-gradient-to-r from-blue-500 to-teal-500 text-white py-16">
+      <div className=" text-black py-16">
         <div className="container mx-auto px-4 md:px-8">
           <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">How It Works</h2>
             <p className="text-lg mb-8">Understand the process behind our AI-Driven Disaster Management System.</p>
             <div className="flex flex-wrap justify-center gap-8">
               <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
-                <img src="process1.png" alt="Data Collection" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <img src={datacollectionimage} alt="Data Collection" className="w-full h-40 object-cover rounded-t-lg mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Step 1: Data Collection</h3>
                 <p>Gather data from various sources, including weather stations, satellites, and sensors.</p>
               </div>
               <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
-                <img src="process2.png" alt="AI Analysis" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <img src={aianalisisimage} alt="AI Analysis" className="w-full h-40 object-cover rounded-t-lg mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Step 2: AI Analysis</h3>
                 <p>Analyze collected data using AI algorithms to identify patterns and predict disasters.</p>
               </div>
               <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
-                <img src="process3.png" alt="Real-Time Alerts" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <img src={realtimealerts} alt="Real-Time Alerts" className="w-full h-40 object-cover rounded-t-lg mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Step 3: Real-Time Alerts</h3>
                 <p>Send real-time alerts to relevant authorities and stakeholders for immediate action.</p>
               </div>
               <div className="p-6 bg-white text-gray-800 shadow-lg rounded-lg w-80">
-                <img src="process4.png" alt="Automated Response" className="w-full h-40 object-cover rounded-t-lg mb-4" />
+                <img src={automatedimage} alt="Automated Response" className="w-full h-40 object-cover rounded-t-lg mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Step 4: Automated Response</h3>
                 <p>Execute pre-defined response plans to mitigate the impact of the disaster.</p>
               </div>
@@ -96,17 +100,17 @@ const Home = () => {
             <p className="text-lg text-gray-700 mb-8">Hear from users who have benefited from our system.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="p-6 bg-white shadow-lg rounded-lg">
-                <img src="user1.jpg" alt="Jane Doe" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
+                <img src="https://images.unsplash.com/photo-1719603785926-84d214438120?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jane Doe" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
                 <h3 className="text-xl font-bold mb-2 text-gray-800 text-center">Jane Doe</h3>
                 <p className="text-gray-700 text-center">"The AI-Driven Disaster Management System has revolutionized our emergency response strategies. Highly recommended!"</p>
               </div>
               <div className="p-6 bg-white shadow-lg rounded-lg">
-                <img src="user2.jpg" alt="John Smith" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="John Smith" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
                 <h3 className="text-xl font-bold mb-2 text-gray-800 text-center">John Smith</h3>
                 <p className="text-gray-700 text-center">"Thanks to the predictive analytics, we were able to prepare in advance and minimize damage during recent floods."</p>
               </div>
               <div className="p-6 bg-white shadow-lg rounded-lg">
-                <img src="user3.jpg" alt="Emily Davis" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Emily Davis" className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
                 <h3 className="text-xl font-bold mb-2 text-gray-800 text-center">Emily Davis</h3>
                 <p className="text-gray-700 text-center">"Real-time alerts have made a significant difference in our disaster management operations. A game-changer!"</p>
               </div>

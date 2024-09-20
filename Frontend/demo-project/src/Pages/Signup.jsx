@@ -23,7 +23,7 @@ const Signup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex flex-col justify-center w-full md:flex-row min-h-screen">
       {/* Left side - Signup form */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-8 bg-white">
         <motion.div 
@@ -33,7 +33,7 @@ const Signup = () => {
           transition={{ duration: 0.5 }}
         >
 
-          <button className="flex items-center justify-center w-full bg-white border border-gray-300 py-2 mb-4 rounded text-sm">
+          <button className="flex items-center justify-center w-full bg-white border-2 border-gray-800 py-2 mb-4 rounded text-sm">
             <img src={googleIcon} alt="Google Icon" className="mr-2 w-8" />
             <span className='font-semibold'>
 
@@ -67,7 +67,7 @@ const Signup = () => {
           <p className="mt-4 text-center text-sm">
             Already have an account? 
             <span >
-                <Link to="/login">
+                <Link to="/government-panel">
 
              <a href="#" className="text-blue-500"> Login Here</a>
                 </Link>
@@ -76,17 +76,7 @@ const Signup = () => {
           </p>
         </motion.div>
       </div>
-      {/* Right side - Video background */}
-      <div className="relative w-full md:w-1/2 h-full">
-        <video 
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-50 md:opacity-100" 
-          src="/path-to-your-video/background-video.mp4" 
-          autoPlay 
-          loop 
-          muted 
-        />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-60 md:opacity-0"></div>
-      </div>
+     
     </div>
   );
 };
