@@ -1,3 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section video {
+  filter: brightness(0.6);
+}
+
+.hero-section .relative {
+  z-index: 10;
+}
+
+.features-overview {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.features-overview .feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.features-overview .feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.how-it-works .step-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.how-it-works .step-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.testimonials-section .testimonial-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonials-section .testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 
 
 .read-the-docs {
@@ -79,5 +129,42 @@ button:hover {
   .government-panel {
     width: 90%;
   }
+}
+
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section video {
+  filter: brightness(0.6);
+}
+
+.features-overview .feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.features-overview .feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.how-it-works .step-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.how-it-works .step-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.testimonials-section .testimonial-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonials-section .testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
