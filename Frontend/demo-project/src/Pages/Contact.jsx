@@ -1,114 +1,146 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import Footer from '../Components/Footer';
 
 const Contact = () => {
+  const pageVariants = {
+    initial: { opacity: 0, y: 20 },
+    in: { opacity: 1, y: 0 },
+    out: { opacity: 0, y: -20 }
+  };
+
+  const pageTransition = {
+    type: 'tween',
+    ease: 'anticipate',
+    duration: 0.5
+  };
+
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-gradient-to-r from-blue-50 to-gray-50">
-      <div className="container mx-auto text-gray-800 py-16 px-4">
+    <motion.div 
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+      className="min-h-screen flex flex-col justify-between bg-gradient-to-r from-blue-50 to-indigo-100"
+    >
+      <div className="container mx-auto text-gray-800 py-16 px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16"
+          className="max-w-7xl mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          {/* Contact Details */}
-          <div className="space-y-8">
-            <h2 className="text-5xl font-bold text-blue-900">Contact Us</h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Whether you're curious about our services, need assistance, or have feedback to share, feel free to reach out to us. We're here to help!
+          <div className="text-center mb-16">
+            <h1 className="text-5xl font-extrabold text-gray-900 sm:text-6xl md:text-7xl">
+              <span className="block">Get in Touch</span>
+              <span className="block text-indigo-600 mt-2">We're Here to Help</span>
+            </h1>
+            <p className="mt-6 max-w-md mx-auto text-xl text-gray-500 sm:text-2xl md:mt-8 md:max-w-3xl">
+              Have questions about our services? Need support? Or just want to share your thoughts? We'd love to hear from you!
             </p>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-2xl font-semibold mb-2 text-blue-800">Customer Support</h3>
-                <p className="mb-4">
-                  Our support team is available around the clock to address any concerns or queries.
-                </p>
-                <div className="flex items-center mb-4">
-                  <FaPhone className="text-xl text-blue-500 mr-2" />
-                  <span className="text-gray-700">+91-9876543210</span>
-                </div>
-                <div className="flex items-center mb-4">
-                  <FaEnvelope className="text-xl text-blue-500 mr-2" />
-                  <span className="text-gray-700">info@companyname.com</span>
-                </div>
-                <div className="flex items-center mb-4">
-                  <FaMapMarkerAlt className="text-xl text-blue-500 mr-2" />
-                  <span className="text-gray-700">Mumbai, Maharashtra, India</span>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* Contact Form */}
-          <motion.div
-            className="bg-white p-10 rounded-lg shadow-lg"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+            <motion.div 
+              className="bg-white rounded-xl shadow-xl overflow-hidden"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="px-6 py-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                {[
+                  { icon: FaPhone, title: 'Phone', content: '+91 98765 43210' },
+                  { icon: FaEnvelope, title: 'Email', content: 'support@disasterguard.com' },
+                  { icon: FaMapMarkerAlt, title: 'Address', content: '123 Disaster St, Mumbai, MH 400001' }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center mb-4">
+                    <div className="flex-shrink-0 bg-indigo-500 rounded-md p-3 mr-4">
+                      <item.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-500">{item.title}</p>
+                      <p className="text-lg font-semibold text-gray-900">{item.content}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="bg-white shadow-2xl rounded-2xl overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="px-6 py-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                    {['First name', 'Last name', 'Email', 'Phone'].map((label, index) => (
+                      <div key={index} className={index > 1 ? "sm:col-span-2" : ""}>
+                        <label htmlFor={label.toLowerCase().replace(' ', '_')} className="block text-sm font-medium text-gray-700">
+                          {label}
+                        </label>
+                        <input
+                          type={label === 'Email' ? 'email' : label === 'Phone' ? 'tel' : 'text'}
+                          name={label.toLowerCase().replace(' ', '_')}
+                          id={label.toLowerCase().replace(' ', '_')}
+                          className="mt-1 block w-full border-gray-300 h-10 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                      </div>
+                    ))}
+                    <div className="sm:col-span-2">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div>
+                    <button
+                      type="submit"
+                      className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300"
+                    >
+                      Send Message
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
           >
-            <h3 className="text-3xl font-semibold mb-6 text-blue-900">Get in Touch</h3>
-            <form className="space-y-6">
-              <div className="flex flex-col">
-                <label htmlFor="first-name" className="text-lg font-medium text-gray-700">First Name</label>
-                <input
-                  type="text"
-                  id="first-name"
-                  className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your first name"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="last-name" className="text-lg font-medium text-gray-700">Last Name</label>
-                <input
-                  type="text"
-                  id="last-name"
-                  className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your last name"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="email" className="text-lg font-medium text-gray-700">Your Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="phone" className="text-lg font-medium text-gray-700">Phone Number</label>
-                <input
-                  type="text"
-                  id="phone"
-                  className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your phone number"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="message" className="text-lg font-medium text-gray-700">Message</label>
-                <textarea
-                  id="message"
-                  className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  rows="5"
-                  placeholder="How can we help you?"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
-              >
-                Send Message
-              </button>
-            </form>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">Connect with us</h2>
+            <div className="flex justify-center space-x-8">
+              {[FaFacebook, FaTwitter, FaLinkedin].map((Icon, index) => (
+                <motion.a
+                  key={index}
+                  href="#"
+                  className="text-gray-400 hover:text-indigo-500 transition-colors duration-300"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Icon className="h-8 w-8" />
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Footer */}
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

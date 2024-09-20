@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 // Example controller function (you might be missing this or have incorrect syntax)
-const {signupController} = require("../controllers/signupController")
+const {Singup} = require("../controllers/Singup");
 // Define your route with the correct callback function
-router.post('/signup', signupController);
+router.post("/sigup" , Singup)
 
 module.exports = router;

@@ -15,7 +15,7 @@ const Navbar = () => {
           <NavLink to="/features" className="hover:text-gray-400">Features</NavLink>
           <NavLink to="/solutions" className="hover:text-gray-400">Solutions</NavLink>
           <NavLink to="/ai-models" className="hover:text-gray-400">AI Models</NavLink>
-          <NavLink to="/resources" className="hover:text-gray-400">Resources</NavLink>
+          <NavLink to="/About" className="hover:text-gray-400">About</NavLink>
           <NavLink to="/contact" className="hover:text-gray-400">Contact</NavLink>
         </nav>
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const signup = require('./routes/signup'); // Correct path to routes
+const signup = require("./routes/singup")
 
 const app = express();
 const PORT = process.env.PORT || 5000;
