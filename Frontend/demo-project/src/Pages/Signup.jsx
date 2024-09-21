@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
+import { VscOrganization } from "react-icons/vsc";
+
 
 const Signup = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -91,6 +93,20 @@ const Signup = () => {
                     type="email"
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                     placeholder="Enter your email"
+                    whileFocus="focus"
+                  />
+                </motion.div>
+
+                <motion.div className="mb-4" variants={inputVariants}>
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    <VscOrganization className="inline mr-2" />
+
+                    Organization
+                  </label>
+                  <motion.input
+                    type="organization"
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                    placeholder="Enter your organization"
                     whileFocus="focus"
                   />
                 </motion.div>

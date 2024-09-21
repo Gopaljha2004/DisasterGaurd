@@ -3,16 +3,15 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUser, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaUser, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-// Custom hook for handling form input
 const useFormInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
   const handleChange = (e) => setValue(e.target.value);
   return { value, onChange: handleChange };
 };
 
-// Custom styled components
 const StyledInput = ({ icon: Icon, ...props }) => (
   <motion.div
     className="relative"
@@ -43,12 +42,14 @@ const StyledLabel = ({ children }) => (
 const User = () => {
   const name = useFormInput('');
   const phone = useFormInput('');
-  const email = useFormInput('');
   const [location, setLocation] = useState({ lat: 51.505, lng: -0.09 });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
+  const [networkStatus, setNetworkStatus] = useState(navigator.onLine ? 'online' : 'offline');
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Get user's geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -62,24 +63,42 @@ const User = () => {
         }
       );
     } else {
-      alert("Geolocation is not supported by this browser.");
+      alert('Geolocation is not supported by this browser.');
       setIsMapLoaded(true);
     }
+
+    // Network status event listeners
+    const updateNetworkStatus = () => {
+      setNetworkStatus(navigator.onLine ? 'online' : 'offline');
+    };
+
+    window.addEventListener('online', updateNetworkStatus);
+    window.addEventListener('offline', updateNetworkStatus);
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      window.removeEventListener('online', updateNetworkStatus);
+      window.removeEventListener('offline', updateNetworkStatus);
+    };
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // User data payload
     const userData = {
       name: name.value,
       phone: phone.value,
-      email: email.value,
-      location,
+      location, // location as { lat, lng }
+      networkStatus, // online or offline status
     };
 
     try {
-      await axios.post('your-api-endpoint', userData);
+      // Post data to the API endpoint
+      await axios.post('http://localhost:3000/api/v1/user', userData);
       alert('Profile updated successfully!');
+      navigate('/user-dashboard'); // Navigate to another page after successful submission
     } catch (error) {
       console.error('There was an error updating the profile!', error);
     } finally {
@@ -125,11 +144,6 @@ const User = () => {
               <StyledLabel>Phone Number</StyledLabel>
               <StyledInput icon={FaPhone} {...phone} required placeholder="Enter your phone" type="tel" />
             </div>
-
-            <div className="md:col-span-2">
-              <StyledLabel>Email</StyledLabel>
-              <StyledInput icon={FaEnvelope} {...email} required placeholder="Enter your email" type="email" />
-            </div>
           </motion.div>
 
           <motion.div
@@ -155,7 +169,7 @@ const User = () => {
                       style={{ height: '250px', width: '100%', borderRadius: '0.375rem', overflow: 'hidden' }}
                       key={location.lat + location.lng}
                     >
-                      <TileLayer 
+                      <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                       />
@@ -172,7 +186,7 @@ const User = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`w-full bg-blue-500 text-white font-semibold py-3 px-4 rounded-md transition-all duration-300 ease-in-out ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600 shadow-lg'}`}
+            className={`w-full bg-blue-500 text-white font-semibold py-3 px-4 mt-5 rounded-md transition-all duration-300 ease-in-out ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600 shadow-lg'}`}
             disabled={isSubmitting}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
