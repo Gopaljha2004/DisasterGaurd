@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:4000' // Replace with your frontend's URL
+    origin: 'http://localhost:4000' || "http://3.110.88.130:4000" // Replace with your frontend's URL
   }));
 
 require("dotenv").config
