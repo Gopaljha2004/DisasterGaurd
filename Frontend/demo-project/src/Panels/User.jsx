@@ -39,6 +39,32 @@ const StyledLabel = ({ children }) => (
   </motion.label>
 );
 
+window.addEventListener('online', function() {
+  fetch('/update-network-status', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userId: 'your_user_id', onlineStatus: true })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error updating network status:', error));
+});
+
+window.addEventListener('offline', function() {
+  fetch('/update-network-status', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userId: 'your_user_id', onlineStatus: false })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error updating network status:', error));
+  });
+
 const User = () => {
   const name = useFormInput('');
   const phone = useFormInput('');

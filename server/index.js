@@ -14,8 +14,12 @@ const PORT = 3000 || process.env.PORT
 
 //routes
 const singup = require("./routes/signup");
+const UserNetworkStatus = require("./routes/UserNetworkStatus")
 //mounting
 app.use("/api/v1/" , singup);
+app.use("/api/v1/" , UserNetworkStatus)
+
+
 
 app.listen(PORT , () =>{
     console.log("Server has started on port")
