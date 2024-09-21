@@ -1,45 +1,57 @@
 const express = require("express");
-const cors = require("cors");
+const cors = require('cors');
 const app = express();
 
-// body parser
+//body parser
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Replace with your frontend's URL
-  })
-);
+app.use(cors({
+    origin: 'http://localhost:4000' // Replace with your frontend's URL
+  }));
 
-// dotenv config
-require("dotenv").config();
-const PORT = process.env.PORT || 3000;
+require("dotenv").config
+const PORT = 3000 || process.env.PORT
 
-// Connect to DB
-const dbConnect = require("./config/database");
+//routes
+const singup = require("./routes/signup");
+const UserNetworkStatus = require("./routes/UserNetworkStatus")
+//mounting
+app.use("/api/v1/" , singup);
+app.use("/api/v1/" , UserNetworkStatus)
+
+
+
+app.listen(PORT , () =>{
+    console.log("Server has started on port")
+})
+
+const dbConnect = require("./config/database")
 dbConnect();
 
-// Routes
-const signup = require("./routes/signup");
-const userNetworkStatus = require("./routes/UserNetworkStatus");
+app.get('/fetch-user-data', (req, res) => {
+    User.find()
+      .then(users => {
+        res.json(users);
+      })
+      .catch(err => {
+        console.error('Error fetching user data:', err);
+        res.status(500).json({ error: 'Failed to fetch user data' });
+      });
+  });
 
-// Mounting routes
-app.use("/api/v1/signup", signup);
-app.use("/api/v1/network-status", userNetworkStatus);
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server has started on port ${PORT}`);
-});
-
-// Fetch user data endpoint
-app.get("/fetch-user-data", (req, res) => {
-  User.find()
-    .then((users) => {
-      res.json(users);
+app.post('/update-network-status', (req, res) => {
+    const userId = req.body.userId;
+    const onlineStatus = req.body.onlineStatus;
+  
+    UserNetworkStatus.findOneAndUpdate(
+      { userId },
+      { onlineStatus, lastUpdated: Date.now() },
+      { upsert: true } // Create the document if it doesn't exist
+    )
+    .then(() => {
+      res.json({ message: 'Network status updated successfully' });
     })
-    .catch((err) => {
-      console.error("Error fetching user data:", err);
-      res.status(500).json({ error: "Failed to fetch user data" });
+    .catch(err => {
+      res.status(500).json({ error: 'Error updating network status' });
     });
-});
+  });
